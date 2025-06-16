@@ -9,6 +9,26 @@
 
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-blue-200 min-h-screen">
+
+<nav class="w-full bg-white/80 shadow-md backdrop-blur-md px-6 py-3 flex items-center justify-between">
+    <a href="{{ route('contacts.index') }}" class="text-xl font-bold text-blue-900 tracking-tight">Contact Manager</a>
+    <div>
+        @auth
+            <span class="text-blue-800 font-semibold mr-4">
+                Olá, {{ Auth::user()->name }}
+            </span>
+            <form action="{{ route('logout') }}" method="POST" class="inline">
+                @csrf
+                <button type="submit" class="text-red-600 hover:underline font-semibold">Sair</button>
+            </form>
+        @else
+            <a href="{{ route('login') }}" class="text-blue-600 hover:underline font-semibold mr-4">Entrar</a>
+            <a href="{{ route('register') }}" class="text-blue-600 hover:underline font-semibold">Registar</a>
+        @endauth
+    </div>
+</nav>
+
+
     <div class="max-w-3xl mx-auto mt-10 p-8 bg-white/80 rounded-xl shadow-2xl backdrop-blur-md">
         <div class="flex items-center justify-between mb-6">
             <h1 class="text-3xl font-extrabold text-blue-900 drop-shadow">Lista de Contatos</h1>
